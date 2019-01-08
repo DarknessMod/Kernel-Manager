@@ -101,32 +101,6 @@ public class NavHeaderView extends LinearLayout {
         }
 
         if (noPic) Prefs.saveString("previewpicture", "nopicture", mImage.getContext());
-
-        findViewById(R.id.nav_header_fab).setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(final View v) {
-                new Dialog(context).setItems(v.getResources()
-                        .getStringArray(R.array.main_header_picture_items), new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        switch (which) {
-                            case 0:
-                                v.getContext().startActivity(new Intent(v.getContext(),
-                                        MainHeaderActivity.class));
-                                break;
-                            case 1:
-                                if (Prefs.getString("previewpicture", null, v.getContext())
-                                        .equals("nopicture"))
-                                    return;
-                                Prefs.saveString("previewpicture", "nopicture", v.getContext());
-                                mImage.setImageDrawable(null);
-                                animateBg();
-                                break;
-                        }
-                    }
-                }).show();
-            }
-        });
     }
 
     public static class MainHeaderActivity extends Activity {
