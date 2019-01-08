@@ -112,7 +112,7 @@ public class AboutFragment extends RecyclerViewFragment {
         sourcecode.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
             @Override
             public void onClick(RecyclerViewItem item) {
-                Utils.launchUrl("https://github.com/SmartPack/SmartPack-Kernel-Manager", requireActivity());
+                Utils.launchUrl("https://github.com/DarknessMod/Kernel-Manager", requireActivity());
             }
         });
 
@@ -122,7 +122,7 @@ public class AboutFragment extends RecyclerViewFragment {
         changelogs.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
             @Override
             public void onClick(RecyclerViewItem item) {
-                Utils.launchUrl("https://raw.githubusercontent.com/SmartPack/SmartPack-Kernel-Manager/master/change-logs.md", getActivity());
+                Utils.launchUrl("https://raw.githubusercontent.com/DarknessMod/Kernel-Manager/master/change-logs.md", getActivity());
             }
         });
 
@@ -132,7 +132,7 @@ public class AboutFragment extends RecyclerViewFragment {
         donatetome.setOnItemClickListener(new RecyclerViewItem.OnItemClickListener() {
             @Override
             public void onClick(RecyclerViewItem item) {
-                Utils.launchUrl("https://www.paypal.me/sunilpaulmathew", getActivity());
+                Utils.launchUrl("https://my.fsf.org/donate/", getActivity());
             }
         });
 
@@ -174,7 +174,7 @@ public class AboutFragment extends RecyclerViewFragment {
             rootView.findViewById(R.id.image).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Utils.launchUrl("https://github.com/sunilpaulmathew", getActivity());
+                    Utils.launchUrl("https://github.com/DarknessMod", getActivity());
                 }
             });
             return rootView;
