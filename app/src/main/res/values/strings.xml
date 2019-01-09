@@ -8,14 +8,12 @@
     <string name="no_root">No root</string>
     <string name="no_busybox">No busybox</string>
     <string name="open">Open %s</string>
-    <string name="disable">Disable</string>
 
     <!-- Security -->
     <string name="password">Password</string>
     <string name="password_wrong">Password is wrong</string>
 
     <string name="select_picture">Select Picture</string>
-    <string name="no_picture">No Picture</string>
     <string name="went_wrong">Something went wrong!</string>
     <string name="press_back_again_exit">Press back again to exit</string>
     <string name="cancel">Cancel</string>
@@ -27,17 +25,11 @@
     <string name="free">Free</string>
     <string name="total">Total</string>
 
-    <string name="license_invalid">Thanks for purchasing the donation app! Unfortunately license check failed. Please try again later. If it\'s still not working, please contact me. You need internet access!</string>
-    <string name="pirated">Seems like the donation app wasn\'t purchased through Play Store! If you pirated it, then shame on you!</string>
     <string name="donate">Donate to Grarak</string>
     <string name="donate_summary">This feature is only available in the donation version of official Kernel Adiutor (not this modified Darkness-Kernel Manager)!\n*Please Note* If you bought the donation app, you probably need to switch to the official Kernel Adiutor to get the benefits.</string>
     <string name="donate_nope">Not now!</string>
     <string name="donate_yes">Donate!</string>
-    <string name="ad_here">Your advertisement could be here</string>
-    <string name="remove_ad">Remove ad</string>
     <string name="warning">Warning!</string>
-    <string name="gh_ad">This is a non commercial ad! Do not take this seriously! Just a funny way to fill the space when an actual ad doesn\'t load (looking at you adblock users).</string>
-    <string name="open_ad_anyway">Open ad anyway</string>
 
     <string name="apply_on_boot">Apply on boot</string>
     <string name="apply_on_boot_text">Applying settings in %d seconds.</string>
@@ -113,7 +105,6 @@
     <string name="smartpack">Darkness</string>
     <string name="about">About</string>
     <string name="contributors">Contributors</string>
-    <string name="kernelupdate">Kernel Updates</string>
     <string name="help" translatable="false">FAQ</string>
 
     <!-- Overall -->
@@ -261,7 +252,6 @@
     <string name="lazyplug">LazyPlug</string>
     <string name="lazyplug_summary">An in-kernel replacement for Qualcomm\'s MPDecision. Developed by arter97.</string>
     <string name="lazy">Lazy</string>
-    <string name="possible_cpu_cores">Possible CPU Cores</string>
     <string name="possible_cpu_cores_summary">Possible CPU Cores that lazyplug can use.</string>
     <string name="blu_plug">Blu_Plug</string>
     <string name="blu_plug_summary">An in-kernel replacement for Qualcomm\'s MPDecision. Developed by Code_Blue team.</string>
@@ -286,10 +276,7 @@
     <string name="max_load_counter">Max Load Counter</string>
     <string name="min_time_cpu_online">Min Time CPU Online</string>
     <string name="timer">Timer</string>
-    <string name="screen_off_single_cpu">Screen off Single CPU</string>
-    <string name="screen_off_single_cpu_summary">Use only one CPU when screen is off.</string>
     <string name="delay">Delay</string>
-    <string name="delay_summary">Time between checks.</string>
     <string name="msm_hotplug">MSM Hotplug</string>
     <string name="msm_hotplug_summary">An in-kernel replacement for Qualcomm\'s MPDecision. Developed by myfluxi.</string>
     <string name="history_size">History Size</string>
@@ -309,12 +296,9 @@
     <string name="cpu_up_rate">CPU Up Rate</string>
     <string name="io_is_busy">IO is Busy</string>
     <string name="io_is_busy_summary">Used to make the hotplug consider the I/O time as CPU load time.</string>
-    <string name="quad_core_mode">Quad-Core mode</string>
-    <string name="dual_core_mode">Dual-Core mode</string>
     <string name="adv_hotplug_tunables">Advanced Hotplug Tunables</string>
     <string name="adv_hotplug_tunables_summary">Warning! This is only for advanced users. Please do not touch unless you\'re an expert.</string>
     <string name="core_control">Core Control</string>
-    <string name="core_control_summary">Qualcomm\'s hotplugging solution. Sorry you can\'t turn it off. #blameqcom</string>
     <string name="hcube">H-Cube</string>
     <string name="hcube_summary">OnePlus\' modified Core Control.</string>
     <string name="min_cpus_big">Minimum CPUs big</string>
@@ -417,7 +401,6 @@
     <string name="msm_thermal_simple">Simple Thermal Monitor</string>
     <string name="msm_thermal_simple_summary">An in-kernel replacement for Qualcomm\'s Thermald. Developed by Sultanxda.</string>
     <string name="usermax_freq">User Maximum Frequency</string>
-    <string name="thermal_zone">Thermal Zones</string>
     <string name="freq_mitg_temp">Frequency Mitigation Temperature</string>
     <string name="freq_mitg_temp_summary">Threshold temperature to mitigate the CPU max frequency.</string>
     <string name="hotplug_temp">Hotplugging Temperature</string>
@@ -601,7 +584,6 @@
     <string name="bright_light_environment_summary">Set the relative intensity of the LED when in bright environments.</string>
     <string name="low_light_environment">Low Light Environment</string>
     <string name="low_light_environment_summary">Set the relative intensity of the LED when in low brightness environments.</string>
-    <string name="notification">Notification</string>
     <string name="on">On</string>
     <string name="off">Off</string>
     <string name="fade_ramp_control">Fade Ramp Control</string>
@@ -902,8 +884,6 @@
     <string name="recheck">\n(Click here to re-check)</string>
     <string name="update_check_failed">Failed to get latest version info! Please check your internet connection</string>
     <string name="up_to_date_message">Congrats! You are up-to-date</string>
-    <string name="no_kernel_support">Unsupported Version</string>
-    <string name="no_kernel_support_summary">Darkness-Kernel is not (yet) available for your Android version</string>
     <string name="saving">Saving...</string>
 
     <!-- App Updater -->
@@ -939,8 +919,6 @@
     <string name="force_cards">Force cards</string>
     <string name="force_cards_summary">Use cards for items if possible.</string>
     <string name="accent_color">Accent Color</string>
-    <string name="section_icons">Section Icons</string>
-    <string name="section_icons_summary">Show icons for each section in navigation drawer.</string>
     <string name="instant">Instant</string>
     <string name="five_sec">5 seconds</string>
     <string name="ten_sec">10 seconds</string>
@@ -958,7 +936,6 @@
     <string name="apply_on_boot_confirmation_notification_summary">After apply on boot with visible notification, show a notification afterwards with the confirmation that apply on boot was successful.</string>
     <string name="script">Script</string>
     <string name="apply_on_boot_script_summary">Use a shell script to apply settings. Please only enable this if you have troubles with apply on boot. If the problem still persists after enabling this option, please make sure no other app is conflicting with Kernel Adiutor.</string>
-    <string name="debugging">Debugging</string>
     <string name="logcat">Logcat(s)</string>
     <string name="logcat_summary">Save all logcats, including radio and events, into \'sdcard\'</string>
     <string name="last_kmsg">Last Kernel Message</string>
