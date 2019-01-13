@@ -62,6 +62,7 @@
     <string name="ma">mA</string>
     <string name="kb">kB</string>
     <string name="px">px</string>
+	<string name="pc">%</string>
 
     <!-- Special signs -->
     <string name="minus" translatable="false">-</string>
@@ -420,6 +421,9 @@
     <string name="blx_summary">Set a limit for the capacity to which the battery will be charged by passing a value between 0 and 100.</string>
     <string name="charging_enable">Enable Charging</string>
     <string name="charging_enable_summary">Warning! Charging will be stopped immediately if disabled.</string>
+    <string name="battery_current_limit">Battery Current Limit (BCL)</string>
+    <string name="low_battery_value">Low Battery Value</string>
+    <string name="low_battery_value_summary">Set low battery value limit to trigger the BCL driver.</string>
 
     <!-- Advanced Charge Control Interface -->
     <string name="acci">Advanced Charge Control Interface</string>

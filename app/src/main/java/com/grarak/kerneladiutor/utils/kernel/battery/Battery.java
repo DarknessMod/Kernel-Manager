@@ -79,6 +79,8 @@ public class Battery {
 
     private static final String BCL = "/sys/class/power_supply/battery/batt_slate_mode";
 
+    private static final String BATTERY_CURRENT_LIMIT = "/sys/module/battery_current_limit/parameters/low_battery_value";
+
     private int mCapacity;
     private static String[] sBatteryAvailable;
     private static String[] sBatteryUSBAvailable;
@@ -134,6 +136,18 @@ public class Battery {
         list.add(context.getString(R.string.enabled));
         list.add(context.getString(R.string.custom_charge));
         return list;
+    }
+
+    public void setBatteryCurrentLimit(int value, Context context) {
+        run(Control.write(String.valueOf(value), BATTERY_CURRENT_LIMIT), BATTERY_CURRENT_LIMIT, context);
+    }
+
+    public static int getBatteryCurrentLimit() {
+        return Utils.strToInt(Utils.readFile(BATTERY_CURRENT_LIMIT));
+    }
+
+    public static boolean hasBatteryCurrentLimit() {
+        return Utils.existFile(BATTERY_CURRENT_LIMIT);
     }
 
     public static boolean hasFastCharge() {

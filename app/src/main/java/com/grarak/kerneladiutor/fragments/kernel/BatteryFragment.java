@@ -68,6 +68,7 @@ public class BatteryFragment extends RecyclerViewFragment {
     protected void addItems(List<RecyclerViewItem> items) {
         levelInit(items);
         voltageInit(items);
+        batteryCurrentLimitInit(items);
         mChargingStatus = new StatsView();
         if (Battery.haschargingstatus()) {
             items.add(mChargingStatus);
@@ -100,6 +101,35 @@ public class BatteryFragment extends RecyclerViewFragment {
         mVoltage.setTitle(getString(R.string.voltage));
 
         items.add(mVoltage);
+    }
+
+    private void batteryCurrentLimitInit(List<RecyclerViewItem> items) {
+        CardView batteryCurrentLimitCard = new CardView(getActivity());
+        batteryCurrentLimitCard.setTitle(getString(R.string.battery_current_limit));
+
+        if (Battery.hasBatteryCurrentLimit()) {
+            SeekBarView batteryCurrentLimit = new SeekBarView();
+            batteryCurrentLimit.setTitle(getString(R.string.low_battery_value));
+            batteryCurrentLimit.setSummary(getString(R.string.low_battery_value_summary));
+            batteryCurrentLimit.setUnit(getString(R.string.pc));
+            batteryCurrentLimit.setMax(100);
+            batteryCurrentLimit.setMin(1);
+            batteryCurrentLimit.setOffset(1);
+            batteryCurrentLimit.setProgress(Battery.getBatteryCurrentLimit() / 1 - 1);
+            batteryCurrentLimit.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+                @Override
+                public void onStop(SeekBarView seekBarView, int position, String value) {
+                    mBattery.setBatteryCurrentLimit((position + 1) * 1, getActivity());
+                }
+                @Override
+                public void onMove(SeekBarView seekBarView, int position, String value) {
+                }
+            });
+            batteryCurrentLimitCard.addItem(batteryCurrentLimit);
+        }
+        if (batteryCurrentLimitCard.size() > 0) {
+            items.add(batteryCurrentLimitCard);
+        }
     }
 
     private void acciInit(List<RecyclerViewItem> items) {
