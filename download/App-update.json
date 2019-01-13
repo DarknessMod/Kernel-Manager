@@ -1,8 +1,9 @@
 {
-  "latestVersion": "69.69-20190109",
+  "latestVersion": "20190114",
   "url": "https://github.com/DarknessMod/Kernel-Manager/blob/master/download/com.darkness.kernelmanager.apk?raw=true",
   "releaseNotes": [
     "Change-log:",
-    "- Various Updates"
+    "- CPU Input Boost/MSM Limiter: use correct ApplyOnBoot id",
+    "- Add BCL Low Battery Value tunable"
   ]
 }
