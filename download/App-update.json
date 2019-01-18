@@ -1,9 +1,12 @@
 {
-  "latestVersion": "69.69-20190114",
+  "latestVersion": "69.69-20190119",
   "url": "https://github.com/DarknessMod/Kernel-Manager/blob/master/download/com.darkness.kernelmanager.apk?raw=true",
   "releaseNotes": [
     "Change-log:",
-    "- CPU Input Boost/MSM Limiter: use correct ApplyOnBoot id",
-    "- Add BCL Low Battery Value tunable"
+    "- Misc: added an option to disable PrintK logging via printk_mode interface by Lord Boeffla.",
+    "- Battery: added support to Lord Boeffla's USB fast charge.",
+    "- VM: added control over zRAM compression algorithm.",
+    "- Display & LED: Unified minimum backlight control.",
+    "- Misc changes and some internal improvements."
   ]
 }

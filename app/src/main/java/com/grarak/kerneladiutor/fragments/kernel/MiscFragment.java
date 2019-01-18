@@ -66,6 +66,9 @@ public class MiscFragment extends RecyclerViewFragment {
         if (mMisc.hasLoggerEnable()) {
             loggerInit(items);
         }
+        if (mMisc.hasPrintKMode()) {
+            printkInit(items);
+        }
         if (mMisc.hasCrc()) {
             crcInit(items);
         }
@@ -121,7 +124,8 @@ public class MiscFragment extends RecyclerViewFragment {
 
     private void loggerInit(List<RecyclerViewItem> items) {
         SwitchView logger = new SwitchView();
-        logger.setSummary(getString(R.string.android_logger));
+        logger.setTitle(getString(R.string.android_logger));
+        logger.setSummary(getString(R.string.android_logger_summary));
         logger.setChecked(mMisc.isLoggerEnabled());
         logger.addOnSwitchListener(new SwitchView.OnSwitchListener() {
             @Override
@@ -131,6 +135,21 @@ public class MiscFragment extends RecyclerViewFragment {
         });
 
         items.add(logger);
+    }
+
+    private void printkInit(List<RecyclerViewItem> items) {
+        SwitchView printk = new SwitchView();
+        printk.setTitle(getString(R.string.printk_logger));
+        printk.setSummary(getString(R.string.printk_logger_summary));
+        printk.setChecked(mMisc.isPrintKModeEnabled());
+        printk.addOnSwitchListener(new SwitchView.OnSwitchListener() {
+            @Override
+            public void onChanged(SwitchView switchView, boolean isChecked) {
+                mMisc.enablePrintKMode(isChecked, getActivity());
+            }
+        });
+
+        items.add(printk);
     }
 
     private void crcInit(List<RecyclerViewItem> items) {

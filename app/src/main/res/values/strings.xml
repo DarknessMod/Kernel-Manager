@@ -699,6 +699,8 @@
     <!-- Virtual Memory -->
     <string name="swap">SWAP</string>
     <string name="zram">Z-RAM</string>
+    <string name="zram_algo">Z-RAM Algorithm</string>
+    <string name="zram_algo_summary">Set default Z-RAM Compression algorithm.\nReduce Z-RAM Disksize to \'0\' before changing this option.</string>
     <string name="disksize">Disksize</string>
     <string name="disksize_summary">Attempts to increase performance by avoiding paging on physical storage, instead using a compressed virtual device in RAM. Paging takes place in RAM until it is necessary to use the swap space on physical storage.</string>
     <string name="zswap">ZSWAP</string>
@@ -716,6 +718,9 @@
 
     <!-- Misc -->
     <string name="android_logger">Android logging</string>
+    <string name="android_logger_summary">Turn On/Off Android logging</string>
+    <string name="printk_logger">PrintK logging</string>
+    <string name="printk_logger_summary">Turn On/Off Linux PrintK logging</string>
     <string name="selinux_switch">SELinux Switch</string>
     <string name="selinux_switch_summary">Disable to switch SELinux into Permissive</string>
     <string name="crc">Software CRC control</string>
