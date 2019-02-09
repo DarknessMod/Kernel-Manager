@@ -19,11 +19,7 @@
  */
 package com.grarak.kerneladiutor.fragments.kernel;
 
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
-import android.os.BatteryManager;
+import android.text.InputType;
 
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.fragments.ApplyOnBootFragment;
@@ -34,6 +30,7 @@ import com.grarak.kerneladiutor.utils.kernel.battery.Battery;
 import com.grarak.kerneladiutor.utils.Device;
 import com.grarak.kerneladiutor.views.recyclerview.CardView;
 import com.grarak.kerneladiutor.views.recyclerview.DescriptionView;
+import com.grarak.kerneladiutor.views.recyclerview.GenericSelectView;
 import com.grarak.kerneladiutor.views.recyclerview.RecyclerViewItem;
 import com.grarak.kerneladiutor.views.recyclerview.SeekBarView;
 import com.grarak.kerneladiutor.views.recyclerview.SelectView;
@@ -50,12 +47,8 @@ public class BatteryFragment extends RecyclerViewFragment {
 
     private Battery mBattery;
 
-    private StatsView mLevel;
-    private StatsView mVoltage;
+    private StatsView mBatteryInfo;
     private StatsView mChargingStatus;
-
-    private int mBatteryLevel;
-    private int mBatteryVoltage;
 
     @Override
     protected void init() {
@@ -66,13 +59,15 @@ public class BatteryFragment extends RecyclerViewFragment {
 
     @Override
     protected void addItems(List<RecyclerViewItem> items) {
-        levelInit(items);
-        voltageInit(items);
+        mBatteryInfo = new StatsView();
+        if (Battery.hasBatteryLevel() || Battery.hasBatteryVoltage() || Battery.hasBatteryHealth()) {
+            items.add(mBatteryInfo);
+        }
         mChargingStatus = new StatsView();
         if (Battery.haschargingstatus()) {
             items.add(mChargingStatus);
         }
-        if (mBattery.hasbatterychargelimit() || mBattery.hasFastCharge() || mBattery.haschargeLevel() || mBattery.hasBlx()) {
+        if (mBattery.hasbatterychargelimit() || mBattery.hasFastCharge() || mBattery.haschargeLevel() || mBattery.hasBlx() || mBattery.hasOPOTGSwitch() || mBattery.hasThunderCharge()) {
             acciInit(items);
         }
     }
@@ -81,25 +76,9 @@ public class BatteryFragment extends RecyclerViewFragment {
     protected void postInit() {
         super.postInit();
 
-        if (itemsSize() > 2) {
-            addViewPagerFragment(ApplyOnBootFragment.newInstance(this));
-        }
+        addViewPagerFragment(ApplyOnBootFragment.newInstance(this));
         addViewPagerFragment(DescriptionFragment.newInstance(getString(R.string.capacity),
                 mBattery.getCapacity() + getString(R.string.mah)));
-    }
-
-    private void levelInit(List<RecyclerViewItem> items) {
-        mLevel = new StatsView();
-        mLevel.setTitle(getString(R.string.level));
-
-        items.add(mLevel);
-    }
-
-    private void voltageInit(List<RecyclerViewItem> items) {
-        mVoltage = new StatsView();
-        mVoltage.setTitle(getString(R.string.voltage));
-
-        items.add(mVoltage);
     }
 
     private void acciInit(List<RecyclerViewItem> items) {
@@ -330,86 +309,137 @@ public class BatteryFragment extends RecyclerViewFragment {
             acci.addItem(blx);
 	}
 
+	if (mBattery.hasOPOTGSwitch()) {
+            SwitchView OnePlusOTG = new SwitchView();
+            OnePlusOTG.setTitle(getString(R.string.otg_enable));
+            OnePlusOTG.setSummary(getString(R.string.otg_enable_summary));
+            OnePlusOTG.setChecked(mBattery.isOPOTGEnabled());
+            OnePlusOTG.addOnSwitchListener(new SwitchView.OnSwitchListener() {
+		@Override
+		public void onChanged(SwitchView switchView, boolean isChecked) {
+			mBattery.OPOTGenable(isChecked, getActivity());
+		}
+            });
+            acci.addItem(OnePlusOTG);
+	}
+
+        if (mBattery.hasThunderChargeEnable()) {
+            SwitchView enable = new SwitchView();
+	    enable.setTitle(getString(R.string.thunder_charge));
+            enable.setSummary(getString(R.string.thunder_charge_summary));
+            enable.setChecked(mBattery.isThunderChargeEnabled());
+            enable.addOnSwitchListener(new SwitchView.OnSwitchListener() {
+		@Override
+		public void onChanged(SwitchView switchView, boolean isChecked) {
+			mBattery.enableThunderCharge(isChecked, getActivity());
+		}
+            });
+
+            acci.addItem(enable);
+        }
+
+	if (mBattery.hasThunderChargeAC()) {
+            GenericSelectView acharge = new GenericSelectView();
+            acharge.setTitle(getString(R.string.charge_level_ac));
+            acharge.setSummary(getString(R.string.charge_level_summary));
+            acharge.setValue(mBattery.getThunderChargeAC());
+            acharge.setInputType(InputType.TYPE_CLASS_NUMBER);
+            acharge.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
+                @Override
+                public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
+                    mBattery.setThunderChargeAC(value, getActivity());
+                    genericSelectView.setValue(value);
+                }
+            });
+
+            acci.addItem(acharge);
+	}
+
+	if (mBattery.hasThunderChargeUSB()) {
+            GenericSelectView usbcharge = new GenericSelectView();
+            usbcharge.setTitle(getString(R.string.charge_level_usb));
+            usbcharge.setSummary(getString(R.string.charge_level_summary));
+            usbcharge.setValue(mBattery.getThunderChargeUSB());
+            usbcharge.setInputType(InputType.TYPE_CLASS_NUMBER);
+            usbcharge.setOnGenericValueListener(new GenericSelectView.OnGenericValueListener() {
+                @Override
+                public void onGenericValueSelected(GenericSelectView genericSelectView, String value) {
+                    mBattery.setThunderChargeUSB(value, getActivity());
+                    genericSelectView.setValue(value);
+                }
+            });
+
+            acci.addItem(usbcharge);
+	}
+
         if (acci.size() > 0) {
             items.add(acci);
         }
     }
 
-    private BroadcastReceiver mBatteryReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            mBatteryLevel = intent.getIntExtra(BatteryManager.EXTRA_LEVEL, 0);
-            mBatteryVoltage = intent.getIntExtra(BatteryManager.EXTRA_VOLTAGE, 0);
-        }
-    };
-
     @Override
     protected void refresh() {
         super.refresh();
-        if (mLevel != null) {
-            mLevel.setStat(mBatteryLevel + "%");
-        }
-        if (mVoltage != null) {
-            mVoltage.setStat(mBatteryVoltage + " mV");
-        }
         if (mChargingStatus != null) {
-		if (mBattery.isDischarging()){
-			mChargingStatus.setTitle("Charge Rate");
-			mChargingStatus.setStat(0.0 + (" mA"));
-		} else if (mBattery.getchargingstatus() >= 10000) {
-			float chargingrate = (mBattery.getchargingstatus() / 1000);
-			if (mBattery.isACCharging()) {
-				mChargingStatus.setTitle("Charge Rate (AC)");
-			} else if (mBattery.isUSBCharging()) {
-				mChargingStatus.setTitle("Charge Rate (USB)");
-			} else {
-				mChargingStatus.setTitle("Charge Rate");
-			}
-			mChargingStatus.setStat(String.valueOf(chargingrate) + (" mA"));
-		} else if (mBattery.getchargingstatus() <= 0) {
-			float chargingrate = ((mBattery.getchargingstatus() / 1000) * -1);
-			if (mBattery.isDASHCharging()) {
-				mChargingStatus.setTitle("Charge Rate (Dash)");
-			} else if (mBattery.isACCharging()) {
-				mChargingStatus.setTitle("Charge Rate (AC)");
-			} else if (mBattery.isUSBCharging()) {
-				mChargingStatus.setTitle("Charge Rate (USB)");
-			} else {
-				mChargingStatus.setTitle("Charge Rate");
-			}
-			mChargingStatus.setStat(String.valueOf(chargingrate) + (" mA"));
+	    float chargingrate = Battery.getchargingstatus();
+	    if (Battery.isDischarging()){		
+		mChargingStatus.setTitle("Discharge Rate");
+		if (chargingrate >= 10000) {
+		    mChargingStatus.setStat(String.valueOf((chargingrate / 1000) * -1) + (" mA"));
+		} else if (chargingrate <= 0) {
+		    mChargingStatus.setStat(String.valueOf(chargingrate / 1000) + (" mA"));
 		} else {
-			float chargingrate = mBattery.getchargingstatus();
-			if (mBattery.ChargingType() == 3) {
-				mChargingStatus.setTitle("Charge Rate (AC)");
-				mChargingStatus.setStat(String.valueOf(chargingrate) + (" mA"));
-			} else if (mBattery.ChargingType() == 4) {
-				mChargingStatus.setTitle("Charge Rate (USB)");
-				mChargingStatus.setStat(String.valueOf(chargingrate) + (" mA"));
-			} else if (mBattery.ChargingType() == 10) {
-				mChargingStatus.setTitle("Charge Rate (Wireless)");
-				mChargingStatus.setStat(String.valueOf(chargingrate) + (" mA"));
-			} else {
-				mChargingStatus.setTitle("Charge Rate");
-				mChargingStatus.setStat(String.valueOf(chargingrate) + (" mA"));
-				}
-			}
+		    mChargingStatus.setStat(String.valueOf(chargingrate * -1) + (" mA"));
+		}		
+	    } else if (chargingrate >= 10000) {
+		if (Battery.isACCharging()) {
+		    mChargingStatus.setTitle("Charge Rate (AC)");
+		} else if (Battery.isUSBCharging()) {
+		    mChargingStatus.setTitle("Charge Rate (USB)");
+		} else {
+		    mChargingStatus.setTitle("Charge Rate");
 		}
+		mChargingStatus.setStat(String.valueOf(chargingrate / 1000) + (" mA"));
+	    } else if (chargingrate <= 0) {
+		if (Battery.isDASHCharging()) {
+		    mChargingStatus.setTitle("Charge Rate (Dash)");
+		} else if (Battery.isACCharging()) {
+		    mChargingStatus.setTitle("Charge Rate (AC)");
+		} else if (Battery.isUSBCharging()) {
+		    mChargingStatus.setTitle("Charge Rate (USB)");
+		} else {
+		    mChargingStatus.setTitle("Charge Rate");
+		}
+		mChargingStatus.setStat(String.valueOf((chargingrate / 1000) * -1) + (" mA"));
+	    } else {
+		if (Battery.ChargingType() == 3) {
+		    mChargingStatus.setTitle("Charge Rate (AC)");
+		} else if (Battery.ChargingType() == 4) {
+		    mChargingStatus.setTitle("Charge Rate (USB)");
+		} else if (Battery.ChargingType() == 10) {
+		    mChargingStatus.setTitle("Charge Rate (Wireless)");
+		} else {
+		    mChargingStatus.setTitle("Charge Rate");
+		}
+		mChargingStatus.setStat(String.valueOf(chargingrate) + (" mA"));
+	    }
 	}
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        requireActivity().registerReceiver(mBatteryReceiver, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        try {
-            requireActivity().unregisterReceiver(mBatteryReceiver);
-        } catch (IllegalArgumentException ignored) {
-        }
+        if (mBatteryInfo != null) {
+	    float level = Battery.BatteryLevel();
+	    float voltage = Battery.BatteryVoltage();
+	    if (Battery.hasBatteryHealth()) {
+	    	mBatteryInfo.setTitle(getString(R.string.battery) + (" (Health: ") + (Battery.BatteryHealth()) + (")"));
+	    } else {
+	    	mBatteryInfo.setTitle(getString(R.string.battery));
+	    }
+	    if (Battery.hasBatteryLevel() && Battery.hasBatteryVoltage()) {
+	    	mBatteryInfo.setStat(("LEVEL: ") + String.valueOf(level).replace(".0", "") + (" %  -  VOLTAGE: ") + String.valueOf(voltage / 1000) + (" mV"));
+	    } else if (Battery.hasBatteryLevel() && !(Battery.hasBatteryVoltage())) {
+	    	mBatteryInfo.setStat(("LEVEL: ") + String.valueOf(level).replace(".0", "") + (" %"));
+	    } else if (!(Battery.hasBatteryLevel()) && Battery.hasBatteryVoltage()) {
+	    	mBatteryInfo.setStat(("VOLTAGE: ") + String.valueOf(voltage / 1000) + (" mV"));
+	    }
+	}
     }
 
 }

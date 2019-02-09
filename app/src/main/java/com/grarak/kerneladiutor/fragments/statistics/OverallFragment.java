@@ -174,7 +174,7 @@ public class OverallFragment extends RecyclerViewFragment {
         if (mCPUFreq.isBigLITTLE()) {
             mFreqBig.setTitle(getString(R.string.cluster_big));
         } else {
-            mFreqBig.setFullSpan(true);
+            mFreqBig.setTitle(getString(R.string.cpu));
         }
         items.add(mFreqBig);
 
@@ -353,7 +353,7 @@ public class OverallFragment extends RecyclerViewFragment {
         }
         if (mTemperature != null) {
             mTemperature.setBattery(mBatteryRaw);
-        }
+	}
     }
 
     private BroadcastReceiver mBatteryReceiver = new BroadcastReceiver() {
