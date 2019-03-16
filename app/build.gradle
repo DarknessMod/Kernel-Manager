@@ -20,8 +20,8 @@ android {
         applicationId "com.darkness.kernelmanager"
         minSdkVersion 15
         targetSdkVersion 28
-        versionCode 70
-        versionName "70.01-20190210-" + getDate()
+        versionCode 99
+        versionName "99.0-" + getDate()
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         archivesBaseName = "$applicationId-v$versionName"

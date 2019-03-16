@@ -48,6 +48,7 @@ public class Misc {
     private static final String CPU_TOUCH_BOOST = "/sys/module/msm_performance/parameters/touchboost";
 
     private static final String DYN_STUNE_BOOST = "/sys/module/cpu_boost/parameters/dynamic_stune_boost";
+    private static final String DYN_STUNE_BOOST_MS = "/sys/module/cpu_boost/parameters/dynamic_stune_boost_ms";
 
     private static final String ADVANCED = "/dev/stune";
 
@@ -81,6 +82,18 @@ public class Misc {
         return Utils.existFile(DYN_STUNE_BOOST);
     }
 
+    public static void setDynStuneBoostDuration(String value, Context context) {
+        run(Control.write(String.valueOf(value), DYN_STUNE_BOOST_MS), DYN_STUNE_BOOST_MS, context);
+    }
+
+    public static String getDynStuneBoostDuration() {
+        return Utils.readFile(DYN_STUNE_BOOST_MS);
+    }
+
+    public static boolean hasDynStuneBoostDuration() {
+        return Utils.existFile(DYN_STUNE_BOOST_MS);
+    }
+
     public static void setValue(String value, int position, Context context) {
         run(Control.write(value, ADVANCED + "/" + STUNE[position]), ADVANCED + "/" +
                 STUNE[position], context);
@@ -91,7 +104,7 @@ public class Misc {
     }
 
     public static String getName(int position) {
-        return STUNE[position];
+        return STUNE[position].replace("_", " ").replace(".", " ");
     }
 
     public static boolean exists(int position) {

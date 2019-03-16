@@ -1,5 +1,21 @@
 # Change-logs
 
+## 57. March 15, 2019
+*Release-tag: v7.5*
+Changes: I/O: Add support to No-Merges & NR Requests. Other (minor) changes.
+
+## 56. March 09, 2019
+*Release-tag: v7.4*
+Changes: Screen: K-Lapse: added control over brightness-based scaling mode. Screen: K-Lapse: Separated backlight range Min & Max. CPU: CPU Boost: added support to Dynamic Stune Boost duration.
+
+## 55. March 06, 2019
+*Release-tag: v7.3*
+Changes: Screen: Added support to K-Lapse, A kernel level live-display module. Updated gradle to 3.3.2. Updated spectrum support checking method.
+
+## 54. February 25, 2019
+*Release-tag: v7.2*
+Changes: Moved profiles and backup's into a new folder "SP" inside internal storage. Misc: added control over Leases Breaks & Lease Break Time. Translations: added Chinese simplified (credits: Roiyaru). SmartPack: removed Moto G 2015 from the supported devices list.
+
 ## 53. February 01, 2019
 *Release-tag: v7.1*
 Changes: Battery: Added thunder charge controller. Partially reverted the recent UI changes by considering user feedbacks (The app should now launch much fast). Wakelocks: Initialized boeffla wakelock blocker at launch for that the wakelocks blocked by default will be listed properly. Wakelocks: Fixed some wakelocks not showing up. Wakelocks: Added support to more wakelocks. Virtual memory: Updated title display style. Misc: Updated Chinese traditional translations.

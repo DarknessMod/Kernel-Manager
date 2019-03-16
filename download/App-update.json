@@ -1,16 +1,9 @@
 {
-  "latestVersion": "70.01-20190210",
+  "latestVersion": "99.0-20190316",
   "url": "https://github.com/DarknessMod/Kernel-Manager/blob/master/download/com.darkness.kernelmanager.apk?raw=true",
   "releaseNotes": [
     "Change-log:",
-    "- Revert Add BCL Low Battery Value tunable",
-    "- Update Gradle config",
-    "- Partially reverted the recent UI changes by considering user feedbacks (The app should now launch much fast).",
-    "- Battery: Added thunder charge controller.",
-    "- Wakelocks: Initialized boeffla wakelock blocker at launch for that the wakelocks blocked by default will be listed properly.",
-    "- Wakelocks: Fixed some wakelocks not showing up.",
-    "- Wakelocks: Added support to more wakelocks.",
-    "- Virtual memory: Updated title display style.",
-    "- Misc: Updated Chinese traditional translations."
+    "- I/O: Add support to No-Merges & NR Requests.",
+    "- Misc: Other (minor) changes."
   ]
 }

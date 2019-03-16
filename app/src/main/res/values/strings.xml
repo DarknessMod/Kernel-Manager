@@ -202,6 +202,7 @@
     <string name="freq_control">Frequency Control</string>
     <string name="freq_control_summary">Allow MSM Limiter to Control the Frequencies of your CPUs.</string>
     <string name="dyn_stune_boost">Dynamic Stune Boost</string>
+    <string name="stune_boost_ms">Stune Boost Duration</string>
     <string name="adv_sett">Advanced Settings</string>
 
     <!-- CPU Input Boost -->
@@ -518,6 +519,30 @@
     <string name="glove_mode">Glove Mode</string>
     <string name="glove_mode_summary">Enabling this will let you use your phone even while wearing gloves.</string>
 
+    <!-- K-Lapse -->
+    <string name="klapse">K-Lapse</string>
+    <string name="klapse_summary">Select preferred K-Lapse mode, a kernel level live-display module by tanish2k09. This shouldn\'t be Turned-Off to tune the rest of K-Lapse parameters.</string>
+    <string name="turn_off">Turned-Off</string>
+    <string name="time_scale">Time Based Scaling</string>
+    <string name="bright_scale">Brightness Based Scaling</string>
+    <string name="night_mode_schedule">Night Mode Schedule (Hour)</string>
+    <string name="start_time">Start</string>
+    <string name="end_time">End</string>
+    <string name="scaling_rate">Scaling Rate (Minute)</string>
+    <string name="scaling_rate_summary">Controls how soon the RGB reaches from Daytime to Night Mode inside of start and stop hour range.</string>
+    <string name="fadeback_time">Fade-back Time (Minute)</string>
+    <string name="fadeback_time_summary">The number of minutes before End Time when RGB should start going back to Daytime colors.</string>
+    <string name="daytime_rgb">Daytime Colors</string>
+    <string name="nightmode_rgb">Night Mode Colors</string>
+    <string name="auto_brightness">Auto-brightness</string>
+    <string name="auto_brightness_summary">Automatically set the brightness factor in a set time range.</string>
+    <string name="brightness_factor">Brightness Factor</string>
+    <string name="brightness_factor_summary">Turn off K-Lapse Auto-brightness control to use this feature. Values: 2-10 (10: Accurate brightness; 5: 50% of current brightness).</string>
+    <string name="auto_brightness_schedule">Auto-brightness Schedule (Hour)</string>
+    <string name="backlight_range">Backlight Range</string>
+    <string name="pulse_freq">Pulse Frequency</string>
+    <string name="pulse_freq_summary">The number of milliseconds after which klapse_pulse is called.</string>
+
     <!-- Wake -->
     <string name="dt2w">DoubleTap2Wake</string>
     <string name="dt2w_summary">Wake up your device by double tapping the screen.</string>
@@ -617,6 +642,10 @@
     <string name="add_random_summary">Draw entropy from spinning (rotational) storage.</string>
     <string name="rq_affitiny">RQ Affinity</string>
     <string name="rq_affinity_summary">Try to have scheduler requests complete on the CPU core they were made from. Higher values are more aggressive.</string>
+    <string name="nomerges">No-Merges</string>
+    <string name="nomerges_summary">This enables the user to disable the lookup logic involved with IO merging requests in the block layer.</string>
+    <string name="nr_requests">NR Requests</string>
+    <string name="nr_requests_summary">This controls how many requests may be allocated in the block layer for read or write requests.</string>
 
     <!-- Kernel Samepage Merging -->
     <string name="full_scans">Full scans</string>
@@ -758,6 +787,10 @@
     <string name="tcp_summary">The Transmission Control Protocol is one of the core protocols of the Internet protocol suite (IP), and is so common that the entire suite is often called TCP/IP.</string>
     <string name="hostname">Hostname</string>
     <string name="wireguard">WireGuard VPN</string>
+    <string name="leases_enable">Leases Enable</string>
+    <string name="leases_enable_summary">Enable or disable file leases on a system-wide basis</string>
+    <string name="lease_break_time">Lease Break Time</string>
+    <string name="lease_break_time_summary">The grace period that the kernel grants to a process holding a file lease after it has sent a signal to that process notifying it that another process is waiting to open the file.</string>
 
     <!-- Performance Tweaks -->
     <string name="spectrum">Spectrum Profiles</string>
@@ -970,7 +1003,7 @@
     <string name="driver_ramoops_summary">Save /sys/fs/pstore/dmesg-ramoops* into \'sdcard\'</string>
     <string name="security">Security</string>
     <string name="set_password">Set Password</string>
-    <string name="set_password_summary">You can protect SmartPack-Kernel Manager by setting up a password. Every time you open this application, you have to enter it. If you forget it, simply wipe the data of this application in settings of your device. Don\'t worry I won\'t share your password.</string>
+    <string name="set_password_summary">You can protect Darkness-Kernel Manager by setting up a password. Every time you open this application, you have to enter it. If you forget it, simply wipe the data of this application in settings of your device. Don\'t worry I won\'t share your password.</string>
     <string name="delete_password">Delete Password</string>
     <string name="old_password">Old password</string>
     <string name="new_password">New password</string>
@@ -1000,7 +1033,7 @@
 
     <!-- FAQ -->
     <string name="how_different">Q1. How this App different from Grarak’s official Kernel Adiutor?</string>
-    <string name="how_different_summary">Ans. This App is significantly modified to meet the needs of Smart-Pack-Kernel (e.g. CPU Input Boost control, Advanced Charge Control Interface (Samsung msm8974 kernels), SELinux switch, OTA support for Darkness-Kernel, Display Backlight Control and more).</string>
+    <string name="how_different_summary">Ans. This App is significantly modified to meet the needs of Darkness-Kernel. Some of the added features of this app include, but not limited to, i. CPU Input Boost, ii. Adreno Boost, iii. Dynamic Stune Boost, iv. K-Lapse, v. Advanced Charge Control Interface (Samsung msm8974 kernels), vi. Boeffla Wakelocks, vii. Boeffla and Flar\'s sound controls with per-channel support, viii. SELinux switch, ix. OTA support for Darkness-Kernel, x. Display Backlight Control and many more.</string>
     <string name="can_i_use">Q2. Can I use this App with other custom kernels?</string>
     <string name="can_i_use_summary">Ans. Why not? It will work as usual.</string>
     <string name="cpu_freq_not_sticking">Q3. Why doesn\'t my determined CPU freq stick?</string>
